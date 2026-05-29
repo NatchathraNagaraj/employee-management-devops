@@ -2,6 +2,7 @@ package com.natchathra.employee_management.controller;
 
 import com.natchathra.employee_management.entity.Employee;
 import com.natchathra.employee_management.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
+    public Employee createEmployee(@Valid @RequestBody Employee employee) {
         return employeeService.saveEmployee(employee);
     }
 

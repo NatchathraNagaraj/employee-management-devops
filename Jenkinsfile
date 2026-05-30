@@ -3,16 +3,38 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Compile') {
             steps {
-                echo 'Cloning source code'
+                bat 'mvn clean compile'
             }
         }
 
-        stage('Build') {
+        stage('Test') {
             steps {
-                bat 'mvn clean package'
+                bat 'mvn test'
             }
+        }
+
+        stage('Package') {
+            steps {
+                bat 'mvn package'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t employee-management .'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build Successful'
+        }
+
+        failure {
+            echo 'Build Failed'
         }
     }
 }

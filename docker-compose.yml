@@ -1,0 +1,22 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: nats
+      MYSQL_DATABASE: employee
+
+
+  employee-management:
+    build: .
+    container_name: employee-app
+
+    restart: always
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - mysql

@@ -20,7 +20,11 @@ pipeline {
                 bat 'mvn package'
             }
         }
-
+        stage('Docker Version') {
+            steps {
+                bat 'docker --version'
+            }
+        }
         stage('Docker Build') {
             steps {
                 bat 'docker build -t employee-management .'

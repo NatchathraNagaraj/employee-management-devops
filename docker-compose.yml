@@ -8,9 +8,8 @@ services:
       MYSQL_ROOT_PASSWORD: nats
       MYSQL_DATABASE: employee
 
-
   employee-management:
-    build: .
+    image: natchathra14/employee-management:latest
     container_name: employee-app
 
     restart: always
